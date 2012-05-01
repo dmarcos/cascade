@@ -56,6 +56,29 @@ describe('Matrix4', function() {
 
   });
 
+  it('should multiply two arbitrary matrices', function() {
+    
+    var matrixA = new Cascade.Matrix4(9, 1,-3, 1,
+                                      1, 0, 0,-9,
+                                      5, 0, 1, 0,
+                                      1,-7, 4, 5);
+
+    var matrixB = new Cascade.Matrix4(9, 1, 5, 1,
+                                      1, 0, 0,-7,
+                                     -3, 0, 1, 4,
+                                      1,-9, 0, 5);
+
+    var expectedResult = new Cascade.Matrix4(92,  0, 42, -5,
+                                              0, 82,  5,-44,
+                                             42,  5, 26,  9,
+                                             -5,-44,  9, 91);
+
+    var result = matrixA.multiply(matrixB);
+
+    expect(result.compare(expectedResult)).to.equal(true);
+
+  });
+
   it('determinant should be 0', function() {
 
     var matrix = new Cascade.Matrix4(9, 1,-3, 1,
